@@ -32,19 +32,23 @@ export class AuthController {
 	public async valUser(req: Request, res: Response, next) {
 		try {
 
-			var result = await people.val(req.body.id, req.body.apppassword).then((successMessage) => {
+			res.send(await people.val(req.body.id, req.body.apppassword));
+
+			/* var result = await people.val(req.body.id, req.body.apppassword).then((successMessage) => {
 				console.log("¡Sí! " + successMessage);
 			  });
-
+			
 			let token: Token;
 			var tokenReturn = jwt.sign(token, "fcasc3210sdfjnmku+98KJH45f", {
 				expiresIn: 60 * 60 * 24 // expires in 24 hours
 			});
+			
+			
 			res.send({
 				user: result[0],
 				tokenReturn
 			});
-			/*
+
 			if (result.length > 0) {
 				result.map((item: any) => {
 					token = {
@@ -67,6 +71,7 @@ export class AuthController {
 				next(err);
 			}
 			*/
+			
 		} catch (error) {
 			let err: ErrorEnum = new Error(error);
 			err.status = 500

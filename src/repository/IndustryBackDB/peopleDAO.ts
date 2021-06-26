@@ -49,7 +49,7 @@ export class PeopleDAO {
 
     public async getPeople() {
         try {
-            var res = await this.connection.pool.query('SELECT id, name, apppassword FROM adm.tbl_people', "").then(res => { return res.rows[0] })
+            var res = await this.connection.pool.query('SELECT id, name, apppassword FROM adm.tbl_people', "").then(res => { return res.rows })
                 .catch(e => console.error(e.stack));
             return res;
         } catch (error) {
@@ -99,22 +99,11 @@ export class PeopleDAO {
 
     public async val(id: string, pass: string) {
         try {
-            var res = await this.connection.pool.query('SELECT id, name, apppassword FROM adm.tbl_people where id = $1', [id], "").then(res => { 
-                if (res.rows.length > 0) {
-                    if (bcrypt.compareSync(pass, res.rows[0].apppassword)) {
-                        // Passwords match
-                        return 'ok';
-                    } else {
-                        // Passwords don't match
-                        return '-1';
-                    }
-                } else {
-                    return '-2';
-                } 
-            }).catch(e => console.error(e.stack));
-
+            var res = await this.connection.pool.query('SELECT id, name, apppassword FROM adm.tbl_people where id = $1 and apppassword = $2', [id, pass], "").then(res => { return res.rows[0] })
+                .catch(e => console.error(e.stack));
+            return res;
         } catch (error) {
-            this.log.insertLog(LogEnum.ERROR, `${PeopleDAO.name} -> ${this.val.name}: ${error}`)
+            this.log.insertLog(LogEnum.ERROR, `${PeopleDAO.name} -> ${this.getPeopleById.name}: ${error}`)
             return new Error(error);
         }
     }
