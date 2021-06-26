@@ -7,6 +7,8 @@ CREATE DATABASE smart
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
 
+\c smart;
+
 CREATE SCHEMA adm
     AUTHORIZATION postgres;
 
