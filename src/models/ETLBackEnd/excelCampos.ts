@@ -4,6 +4,7 @@ export class ExcelCampos {
     public vibracion: string;
     public horaLectura: string;
     public fechaCargaArchivo: string;
+    public maquina: string;
     public validado: string;
     public observacion: string;
 }

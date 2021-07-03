@@ -14,12 +14,13 @@ export class ExcelDAO {
 
     public async insertExcel(excel: ExcelCampos) {
         try {
-            this.connection.pool.query('INSERT INTO adm.tbl_excel (temperatura, vibracion, hora_lectura, fecha_archivo) VALUES ($1, $2, $3, $4)',
+            this.connection.pool.query('INSERT INTO adm.tbl_excel (temperatura, vibracion, hora_lectura, fecha_archivo, maquina) VALUES ($1, $2, $3, $4, $5)',
                 [
                     excel.temperatura,
                     excel.vibracion,
                     excel.horaLectura,
-                    excel.fechaCargaArchivo
+                    excel.fechaCargaArchivo,
+                    excel.maquina
                 ],
                 (error, results) => {
                     if (error) {
@@ -37,12 +38,13 @@ export class ExcelDAO {
         try {
             var connection = this.connection;
             lstExcel.forEach(function (excel) {
-                connection.pool.query('INSERT INTO adm.tbl_excel (temperatura, vibracion, hora_lectura, fecha_archivo) VALUES ($1, $2, $3, $4)',
+                connection.pool.query('INSERT INTO adm.tbl_excel (temperatura, vibracion, hora_lectura, fecha_archivo, maquina) VALUES ($1, $2, $3, $4, $5)',
                     [
                         excel.temperatura,
                         excel.vibracion,
                         excel.horaLectura,
-                        excel.fechaCargaArchivo
+                        excel.fechaCargaArchivo,
+                        excel.maquina
                     ],
                     (error, results) => {
                         if (error) {

@@ -33,8 +33,11 @@ export class GrupoUnoController {
 							case "3":
 								excel.fechaCargaArchivo = rows[i][j];
 								break;
+							case "4":
+								excel.maquina = rows[i][j];
+								break;
 							default:
-								console.log('Pailas');
+								console.log('Sin columna');
 						}
 					}
 					lstExcel.push(excel);
