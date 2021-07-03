@@ -2,10 +2,12 @@
 import {Request, Response, NextFunction} from "express";
 import { PeopleController } from "../controllers/peopleController";
 import * as auth from '../authService'
+import { GrupoUnoController } from "../controllers/grupoUnoController";
 var cors = require('cors');
 export class PeopleRoutes { 
     
     public peopleController: PeopleController = new PeopleController();
+    public grupoUnoController: GrupoUnoController = new GrupoUnoController();
 
     public routes(app): void {   
         
@@ -24,5 +26,7 @@ export class PeopleRoutes {
 
         app.route('/user/delete')
         .post(auth,this.peopleController.deletePeople)
+
+        app.route('/grupoUno/subirExcel').post(auth, this.grupoUnoController.leerExcel);
     }
 }
