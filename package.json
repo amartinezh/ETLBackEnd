@@ -36,6 +36,7 @@
     "mysql": "^2.16.0",
     "nodemon": "^1.19.1",
     "pg": "^8.5.1",
+    "read-excel-file": "^5.2.4",
     "socket.io": "^2.3.0",
     "typescript": "^3.0.3",
     "uuid": "^3.3.2",
