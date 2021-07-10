@@ -26,6 +26,7 @@ import { AuthRoutes } from "./routes/authRoutes";
 import { ErrorHandler } from "./errorHandlerService";
 import { LogRoutes } from "./routes/logRoutes";
 import { GrupoUnoRoutes } from "./routes/grupoUnoRoutes";
+import { FilterRoutes } from "./routes/filterRoutes";
 
 class App {
 
@@ -34,6 +35,7 @@ class App {
     public authRoutes: AuthRoutes = new AuthRoutes();
     public errorHandler: ErrorHandler = new ErrorHandler();
     public grupoUnoRoutes: GrupoUnoRoutes = new GrupoUnoRoutes();
+    public filterRoutes: FilterRoutes = new FilterRoutes();
 
     private connection;
 
@@ -44,6 +46,7 @@ class App {
         this.authRoutes.routes(this.app);
         this.errorHandler.routes(this.app);
         this.grupoUnoRoutes.routes(this.app);
+        this.filterRoutes.routes(this.app);
 
         this.connection = DataBaseService.getInstance();
         //this.httpRequestService = HttpRequestService.getInstance();
