@@ -98,7 +98,7 @@ export class PeopleDAO {
     }
 
     public async val(id: string, pass: string) {
-        try {
+        try {            
             var res = await this.connection.pool.query('SELECT id, name, apppassword FROM adm.tbl_people where id = $1 and apppassword = $2', [id, pass], "").then(res => { return res.rows[0] })
                 .catch(e => console.error(e.stack));
             return res;

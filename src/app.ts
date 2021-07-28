@@ -26,6 +26,8 @@ import { AuthRoutes } from "./routes/authRoutes";
 import { ErrorHandler } from "./errorHandlerService";
 import { LogRoutes } from "./routes/logRoutes";
 import { GrupoUnoRoutes } from "./routes/grupoUnoRoutes";
+import { MenuRoutes } from "./routes/menuRoutes";
+
 import { FilterRoutes } from "./routes/filterRoutes";
 
 class App {
@@ -35,17 +37,20 @@ class App {
     public authRoutes: AuthRoutes = new AuthRoutes();
     public errorHandler: ErrorHandler = new ErrorHandler();
     public grupoUnoRoutes: GrupoUnoRoutes = new GrupoUnoRoutes();
+    public menuRoutes: MenuRoutes = new MenuRoutes();
     public filterRoutes: FilterRoutes = new FilterRoutes();
 
     private connection;
 
     constructor() {
         this.app = express();
-        this.config();
-        this.peopleRoutes.routes(this.app);
-        this.authRoutes.routes(this.app);
-        this.errorHandler.routes(this.app);
+        this.config();        
+        this.peopleRoutes.routes(this.app);        
+        this.authRoutes.routes(this.app);  
+        this.menuRoutes.routes(this.app);      
+        this.errorHandler.routes(this.app);        
         this.grupoUnoRoutes.routes(this.app);
+        
         this.filterRoutes.routes(this.app);
 
         this.connection = DataBaseService.getInstance();

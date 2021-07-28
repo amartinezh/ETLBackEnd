@@ -30,8 +30,7 @@ export class AuthController {
 	/*-------------------------------- app --------------------------------------------------------*/
 
 	public async valUser(req: Request, res: Response, next) {
-		try {
-
+		try {			
 			res.send(await people.val(req.body.id, req.body.apppassword));
 
 			/* var result = await people.val(req.body.id, req.body.apppassword).then((successMessage) => {
